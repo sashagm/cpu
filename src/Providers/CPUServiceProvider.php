@@ -37,6 +37,21 @@ class CPUServiceProvider extends ServiceProvider
     });
 
 
+
+    Route::bind('events', function ($value) {
+        $query = config('cfg.cpu_url') ? 'slug' : 'id';
+        return  \App\Models\Events::where($query, $value)->firstOrFail();
+    });
+
+
+    Route::bind('specials', function ($value) {
+        $query = config('cfg.cpu_url') ? 'slug' : 'id';
+        return  \App\Models\SpecialOffer::where($query, $value)->firstOrFail();
+    });
+
+
+    
+
             
     }
 }

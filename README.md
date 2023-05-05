@@ -6,7 +6,7 @@
 #### Установка
 
 - composer require sashagm/cpu
-- php artisan vendor:publish --provider='Sashagm\Cpu\Providers\CPUServiceProvider'
+- php artisan vendor:publish --provider="Sashagm\Cpu\Providers\CPUServiceProvider"
 
 
 
