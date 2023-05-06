@@ -1,9 +1,18 @@
 <?php
 
 return [
-
-
-    'cpu_url' => env('CPU_URL', 1), // 0 - вывод по id, 1 - вывод по slug
-
-
+    'cpu_url' => 0,
+    'routes' => [
+        [
+            'name' => 'post',
+            'model' => 'App\Models\Post',
+            'query' => ['id', 'slug'],
+        ],
+        [
+            'name' => 'user',
+            'model' => 'App\Models\User',
+            'query' => ['id', 'email'],
+        ],
+        // другие роуты и модели
+    ],
 ];

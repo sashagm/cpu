@@ -2,6 +2,7 @@
 
 namespace Sashagm\Cpu\Providers;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -9,6 +10,15 @@ use Illuminate\Support\ServiceProvider;
 
 class CPUServiceProvider extends ServiceProvider
 {
+    protected $cpuUrl;
+
+    public function __construct($app)
+    {
+        parent::__construct($app);
+
+        $this->cpuUrl = config('cfg.cpu_url');
+    }
+
     /**
      * Register services.
      */
@@ -20,38 +30,38 @@ class CPUServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      */
-    public function boot(): void
-    {
-        
-
-        $this->publishes([
-            __DIR__.'/../config/cfg.php' => config_path('cfg.php'),
-
-        ]);
 
 
-
-    Route::bind('users', function ($value) {
-        $query = config('cfg.cpu_url') ? 'slug' : 'id';
-        return  \App\Models\User::where($query, $value)->firstOrFail();
-    });
-
-
-
-    Route::bind('events', function ($value) {
-        $query = config('cfg.cpu_url') ? 'slug' : 'id';
-        return  \App\Models\Events::where($query, $value)->firstOrFail();
-    });
-
-
-    Route::bind('specials', function ($value) {
-        $query = config('cfg.cpu_url') ? 'slug' : 'id';
-        return  \App\Models\SpecialOffer::where($query, $value)->firstOrFail();
-    });
-
-
-    
-
-            
-    }
+     public function boot()
+     {
+     
+         $routes = config('cfg.routes');
+     
+         foreach ($routes as $route) {
+             switch ($this->cpuUrl) {
+                 case 0:
+                     $query = $route['query'];
+                     break;
+                 case 1:
+                     $query = ['slug']; // или другой параметр для ЧПУ
+                     break;
+                 default:
+                     throw new Exception('Invalid value for cpu_url in config/cfg.php');
+             }
+     
+             if (!class_exists($route['model'])) {
+                 throw new Exception('Model '.$route['model'].' not found');
+             }
+     
+             Route::bind($route['name'], function ($value) use ($route, $query) {
+                 $model = new $route['model'];
+                 foreach ($query as $param) {
+                     $model = $model->where($param, $value);
+                 }
+                 return $model->firstOrFail();
+             });
+         }
+     }
 }
+
+
