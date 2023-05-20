@@ -34,7 +34,6 @@ class CPUServiceProvider extends ServiceProvider
 
      public function boot()
      {
-     
          $routes = config('cfg.routes');
      
          foreach ($routes as $route) {
