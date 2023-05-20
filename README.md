@@ -1,3 +1,15 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+<p align="center">
+
+<a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/packagist/dt/sashagm/cpu" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/packagist/v/sashagm/cpu" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/packagist/l/sashagm/cpu" alt="License"></a>
+<a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/github/languages/code-size/sashagm/cpu" alt="Code size"></a>
+<a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/packagist/stars/sashagm/cpu" alt="Code size"></a>
+</p>
+
+
 ## CPU Sniffer
 
 С помощью данного пакета можно управлять ЧПУ. Для вывода ЧПУ ссылок по условию в Laravel с помощью Route bind. SLUG OR ID.
