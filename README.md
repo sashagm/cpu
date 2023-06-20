@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/packagist/l/sashagm/cpu" alt="License"></a>
 <a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/github/languages/code-size/sashagm/cpu" alt="Code size"></a>
 <a href="https://packagist.org/packages/sashagm/cpu"><img src="https://img.shields.io/packagist/stars/sashagm/cpu" alt="Code size"></a>
+
+[![PHP Version](https://img.shields.io/badge/PHP-%2B8-blue)](https://www.php.net/)
+[![Laravel Version](https://img.shields.io/badge/Laravel-%2B10-red)](https://laravel.com/)
+
 </p>
 
 
