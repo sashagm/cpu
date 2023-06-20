@@ -5,17 +5,21 @@ namespace Sashagm\Cpu\Providers;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use Sashagm\Cpu\Traits\RouteBindingTrait;
 
 
 class CPUServiceProvider extends ServiceProvider
 {
     protected $cpuUrl;
 
-    public function __construct($app)
+    use RouteBindingTrait;
+
+    public function __construct(Application $app)
     {
         parent::__construct($app);
-
+    
         $this->cpuUrl = config('cfg.cpu_url');
     }
 
@@ -34,32 +38,7 @@ class CPUServiceProvider extends ServiceProvider
 
      public function boot()
      {
-         $routes = config('cfg.routes');
-     
-         foreach ($routes as $route) {
-             switch ($this->cpuUrl) {
-                 case 0:
-                     $query = $route['query'];
-                     break;
-                 case 1:
-                     $query = ['slug']; // или другой параметр для ЧПУ
-                     break;
-                 default:
-                     throw new Exception('Invalid value for cpu_url in config/cfg.php');
-             }
-     
-             if (!class_exists($route['model'])) {
-                 throw new Exception('Model '.$route['model'].' not found');
-             }
-     
-             Route::bind($route['name'], function ($value) use ($route, $query) {
-                 $model = new $route['model'];
-                 foreach ($query as $param) {
-                     $model = $model->where($param, $value);
-                 }
-                 return $model->firstOrFail();
-             });
-         }
+        $this->bootRouteBinding();
      }
 }
 
