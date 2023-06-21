@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Sashagm\Cpu\Traits\RouteBindingTrait;
+use Sashagm\Cpu\Console\Commands\CreateCommand;
 
 
 class CPUServiceProvider extends ServiceProvider
@@ -38,6 +39,17 @@ class CPUServiceProvider extends ServiceProvider
 
      public function boot()
      {
+        $this->publishes([
+            __DIR__.'/../config/cfg.php' => config_path('cfg.php'),
+
+        ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CreateCommand::class,
+            ]);
+        }
+
         $this->bootRouteBinding();
      }
 }
