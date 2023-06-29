@@ -23,13 +23,23 @@ trait RouteBindingTrait
         $routes = $config['routes'];
 
         foreach ($routes as $route) {
-            $query = $config['cpu_url'] == 1 ? ['slug'] : ($route['query'] ?? []);
+            if (!isset($route['name'])) {
+                throw new Exception('Missing name for route in config/cfg.php');
+            }
+
+            if (!isset($route['model'])) {
+                throw new Exception('Missing model for route in config/cfg.php');
+            }
+
+            if (!isset($route['query'])) {
+                throw new Exception('Missing query for route in config/cfg.php');
+            }
+
+            $query = $config['cpu_url'] == 1 ? ['slug'] : $route['query'];
 
             if (!class_exists($route['model'])) {
                 throw new Exception('Model ' . $route['model'] . ' not found');
             }
-            
-
 
             Route::bind($route['name'], function ($value) use ($route, $query) {
                 $model = new $route['model'];
@@ -40,6 +50,4 @@ trait RouteBindingTrait
             });
         }
     }
-
-
 }
