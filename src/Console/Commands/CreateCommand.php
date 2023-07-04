@@ -3,11 +3,8 @@
 namespace Sashagm\Cpu\Console\Commands;
 
 use Illuminate\Console\Command;
-
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Sashagm\Cpu\Providers\CPUServiceProvider;
-
 
 
 class CreateCommand extends Command
@@ -45,9 +42,6 @@ class CreateCommand extends Command
         ]);
         $this->components->info('Сервис провайдер опубликован...');
 
-
-
- 
     }
 
 

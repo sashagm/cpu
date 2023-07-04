@@ -2,7 +2,6 @@
 
 namespace  Sashagm\Cpu\Traits;
 
-
 use Exception;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +49,5 @@ trait RouteBindingTrait
             });
         }
     }
+
 }

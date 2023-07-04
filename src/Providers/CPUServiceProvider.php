@@ -3,13 +3,10 @@
 namespace Sashagm\Cpu\Providers;
 
 use Exception;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Sashagm\Cpu\Traits\RouteBindingTrait;
 use Sashagm\Cpu\Console\Commands\CreateCommand;
-
 
 class CPUServiceProvider extends ServiceProvider
 {
