@@ -17,7 +17,7 @@ class CPUServiceProvider extends ServiceProvider
     public function __construct(Application $app)
     {
         parent::__construct($app);
-    
+
         $this->cpuUrl = config('cfg.cpu_url');
     }
 
@@ -34,21 +34,31 @@ class CPUServiceProvider extends ServiceProvider
      */
 
 
-     public function boot()
-     {
+    public function boot()
+    {
+
+        $this->publishFiles();
+
+        $this->registerCommands();
+
+        $this->bootRouteBinding();
+    }
+
+
+    protected function publishFiles()
+    {
         $this->publishes([
-            __DIR__.'/../config/cfg.php' => config_path('cfg.php'),
+            __DIR__ . '/../config/cfg.php' => config_path('cfg.php'),
 
         ]);
+    }
 
+    protected function registerCommands()
+    {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 CreateCommand::class,
             ]);
         }
-
-        $this->bootRouteBinding();
-     }
+    }
 }
-
-
