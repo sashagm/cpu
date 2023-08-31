@@ -21,7 +21,7 @@ class CreateCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Данная команда создаст необходимые файлы.';
+    protected $description = 'Данная команда создаст необходимые файлы пакета cpu.';
 
     /**
      * Execute the console command.
