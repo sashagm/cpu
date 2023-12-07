@@ -9,6 +9,11 @@ trait RouteBindingTrait
 {
     public function bootRouteBinding()
     {
+        if (!file_exists(config('cfg'))) {
+            return false;
+        }
+
+
         $config = config('cfg');
 
         $this->validateConfig($config);
