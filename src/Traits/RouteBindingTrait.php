@@ -9,12 +9,13 @@ trait RouteBindingTrait
 {
     public function bootRouteBinding()
     {
-        if (!file_exists(config('cfg'))) {
+        $configPath = join(DIRECTORY_SEPARATOR, [config_path(), 'cfg.php']);
+
+        if (!file_exists($configPath)) {
             return false;
         }
 
-
-        $config = config('cfg');
+        $config = require $configPath;
 
         $this->validateConfig($config);
 
