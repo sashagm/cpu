@@ -27,6 +27,7 @@ class CPUServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->publishFiles();
     }
 
     /**
@@ -37,7 +38,7 @@ class CPUServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $this->publishFiles();
+
 
         $this->registerCommands();
 
